@@ -1,0 +1,20 @@
+.pagination{
+    margin: 50px auto;
+}
+
+.actualPage {
+    width: 45px;
+    height: 45px;
+    background-color: var(--dark);
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin: auto 20px;
+}
+
+a {
+    color: var(--red);
+    background-color: var(--dark);
+    font-size: 1.4rem;
+    margin: auto 10px;
+    padding: 15px 20px;
+}

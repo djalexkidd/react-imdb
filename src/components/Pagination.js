@@ -1,4 +1,5 @@
 import { Link, useSearchParams } from "react-router-dom";
+import './Pagination.css';
 
 const prevNextPages = ({pageLink, pagenumber, pageMax = 0, withSearch = false, search}, prev = true) => {
     // les 3 pages avant la notre
@@ -33,12 +34,12 @@ const buildPath = (num, withSearch, search) => {
         }
         return url+(url === '' ? '?' : '&' )+'page='+num;
     } else {
-        return '/'+num;
+        return '/page/'+num;
     }
 }
 
 const Pagination = (props) => {
-
+    
     let {pageMax, pageNumber} = props;
     let [search] = useSearchParams();
 

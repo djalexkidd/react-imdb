@@ -63,6 +63,16 @@ article {
     .voirFilm:active{
         background-color: var(--light-grey);
     }
+    .noImage{
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+        max-width: 288px;
+        min-height: 380px;
+        background-color: var(--black);
+        text-align: center;
+        font-weight: 700;
+    }
     .age {
         user-select: none;
         width: 20px;
