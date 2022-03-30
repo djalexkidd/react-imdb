@@ -1,0 +1,9 @@
+article {
+    display: flex;
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+article img {
+    max-width: 15rem;
+}
