@@ -1,3 +1,10 @@
-input {
+input:not(.submit) {
     width: 80%;
+    height: 50px;
+    font-family: Arial;
+    font-size: 24px;
+    border-radius: 10px;
+    padding-left: 10px;
+    margin: 30px 20px;
+    border: 0;
 }

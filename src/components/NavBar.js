@@ -3,7 +3,9 @@ import './NavBar.css';
 import logo from '../images/logo.svg';
 
 const linkList = [
-    ['/', 'Home']
+    ['/', 'Home'],
+    ['favoris', 'Mes favoris'],
+    ['a-voir', 'À voir']
 ]
 
 const NavBar = () => {

@@ -2,8 +2,68 @@ article {
     display: flex;
     max-width: 90%;
     margin: 20px auto;
+    max-height: 432px;
+    background-color: var(--dark-grey);
+    overflow: hidden;
 }
-
-article img {
-    max-width: 15rem;
-}
+    .title{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    article h2 {
+        text-align: center;
+        margin: 10px 50px;
+    }
+    article > div:not(.content) {
+        margin: 0 auto;
+        width: 40%;
+        min-width: 50%;
+        max-width: 90%;
+    }
+    article p {
+        line-height: 1.5rem;
+        margin: 20px auto;
+        font-size: 0.9rem;
+    }
+    article img {
+        max-width: 18rem;
+    }
+    .content {
+        display: flex;
+        justify-content: end;
+        margin: 40px 50px;
+        align-items: center;
+    }
+    .clickableDiv{
+        cursor: pointer;
+        min-width: 80px;
+        margin: auto 40px;
+        padding: 10px;
+    }
+    .favorite {
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        width: 45px;
+        height: 45px;
+        padding: 10px;
+        display: inline-block;
+        background-color: var(--light-grey);
+    }
+    .favorite.active{
+        background-color: #ffe658;
+    }
+    .voirFilm {
+        user-select: none;
+        background-color: var(--red);
+        cursor: pointer;
+        padding: 20px;
+        border-radius: 0.2rem;
+        white-space: nowrap;
+    }
+    .voirFilm:active{
+        background-color: var(--light-grey);
+    }
+    .age {
+        user-select: none;
+        width: 20px;
+    }

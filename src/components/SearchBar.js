@@ -2,7 +2,10 @@ import './SearchBar.css';
 
 const SearchBar = () => {
     return (
-        <input placeholder="Recherche"></input>
+        <form>
+            <input placeholder="Recherche"></input>
+            <input className="submit" type="submit"></input>
+        </form>
     )
 }
 
