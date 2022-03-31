@@ -11,21 +11,24 @@ const apiKey = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyOGRmMjg2NDA3ZTYwYTk5NGZlZDIzN2J
 let page = '?page=';
 
 const Accueil = () => {
-    
-    const searchContext = useContext(SearchContext);
-    const apiSearch = `?query=${searchContext.search}`;
     let {pageNumber} = useParams();
-    let [search, setSearch] = useSearchParams()
-    let name = search.get('name');
+    let [search, setSearch] = useSearchParams();
+    let querySearch = search.get('query');
     pageNumber = (typeof pageNumber == 'undefined') ? 1 : pageNumber;
     let [moviesData, setMoviesData] = useState([]);
     let [pageMax, setPageMax] = useState(1);
     let [query, setQuery] = useState(false);
-
+    let [pageQuery, setPageQuery] = useState('');
+    
     useEffect(
         () => {
             let discover = 'discover/movie'+(isNaN(pageNumber) ? '' : page)+pageNumber;
-            let searchMovie = 'search/movie'+apiSearch;
+            setPageQuery(search.get('page'));
+            let title= search.get('query');
+            let apiSearch = '?query='+title;
+            if (!title) setQuery(false);
+            let searchMovie = 'search/movie'+(title === null ? '' : apiSearch)+(pageQuery !== '1' && query ? '&page='+pageQuery : '');
+            console.log(searchMovie)
             fetch(apiCall+(!query ? discover : searchMovie), {
                 headers: {
                     'Authorization': 'Bearer '+apiKey
@@ -33,22 +36,27 @@ const Accueil = () => {
             })
             .then(response => response.json())
             .then(datas => {
-                setMoviesData(datas.results)
+                if ('results' in datas){
+                    console.log(datas);
+                    setMoviesData(datas.results)
+                } else {
+                    setMoviesData([])
+                }
                 setPageMax(500);
             })
-        }, [pageNumber]
+        }, [pageNumber, search]
     )
     pageNumber = +(pageNumber);
     return (
         <Fragment>
             <h1>Recherche ton film !</h1>
-            <SearchBar query={query} name={name} setSearch={setSearch}/>
+            <SearchBar query={query} querySearch={querySearch} setSearch={setSearch} setQuery={setQuery}/>
                 <div className="movieResult">
                     {
                         moviesData.map(item => <Movies datas={item} key={item.id} />)
                     }
                 </div>
-            <Pagination pageMax={pageMax} pageNumber={pageNumber} withSearch={query}/>
+            <Pagination pageMax={pageMax} pageNumber={(query ? pageQuery : pageNumber)} withSearch={query}/>
             <Footer/>
         </Fragment>
     )
