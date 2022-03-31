@@ -34,7 +34,11 @@ const buildPath = (num, withSearch, search) => {
         }
         return url+(url === '' ? '?' : '&' )+'page='+num;
     } else {
-        return '/page/'+num;
+        if (num === 1) {
+            return '/';
+        } else {
+            return '/page/'+num;
+        }
     }
 }
 
@@ -42,7 +46,7 @@ const Pagination = (props) => {
     
     let {pageMax, pageNumber} = props;
     let [search] = useSearchParams();
-
+    
     return (
         <div className="pagination">
             {

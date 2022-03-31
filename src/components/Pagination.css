@@ -15,6 +15,6 @@ a {
     color: var(--red);
     background-color: var(--dark);
     font-size: 1.4rem;
-    margin: auto 10px;
+    margin: auto 5px;
     padding: 15px 20px;
 }
