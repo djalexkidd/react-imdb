@@ -18,7 +18,7 @@ const Accueil = () => {
     let [moviesData, setMoviesData] = useState([]);
     let [pageMax, setPageMax] = useState(1);
     let [query, setQuery] = useState(false);
-    let [pageQuery, setPageQuery] = useState('');
+    let [pageQuery, setPageQuery] = useState(1);
     
     useEffect(
         () => {
@@ -27,7 +27,7 @@ const Accueil = () => {
             let title= search.get('query');
             let apiSearch = '?query='+title;
             if (!title) setQuery(false);
-            let searchMovie = 'search/movie'+(title === null ? '' : apiSearch)+(pageQuery !== '1' && query ? '&page='+pageQuery : '');
+            let searchMovie = 'search/movie'+(title === null ? '' : apiSearch)+(pageQuery === 1 && query ? '&page='+pageQuery : '');
             console.log(searchMovie)
             fetch(apiCall+(!query ? discover : searchMovie), {
                 headers: {
@@ -37,7 +37,6 @@ const Accueil = () => {
             .then(response => response.json())
             .then(datas => {
                 if ('results' in datas){
-                    console.log(datas);
                     setMoviesData(datas.results)
                 } else {
                     setMoviesData([])
@@ -53,7 +52,10 @@ const Accueil = () => {
             <SearchBar query={query} querySearch={querySearch} setSearch={setSearch} setQuery={setQuery}/>
                 <div className="movieResult">
                     {
-                        moviesData.map(item => <Movies datas={item} key={item.id} />)
+                        (moviesData.length) ? 
+                            moviesData.map(item => <Movies datas={item} key={item.id} />)
+                        :
+                            <p>Aucun résulats n'a été trouvé pour votre recherche</p>
                     }
                 </div>
             <Pagination pageMax={pageMax} pageNumber={(query ? pageQuery : pageNumber)} withSearch={query}/>

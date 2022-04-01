@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route, useSearchParams } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import NavBar from './components/NavBar';
 import Accueil from './pages/Accueil';
@@ -14,7 +14,7 @@ function App() {
   useEffect(
     () => {
       if (localStorage) {
-        let movies = localStorage.getItem('myfav');
+        let movies = localStorage.getItem('favMovies');
         if (movies && movies.length) {
             movies = JSON.parse(movies);
         } else {
@@ -28,7 +28,7 @@ function App() {
   const register = (a) => {
     if (localStorage) {
       let add = true;
-      let movies = localStorage.getItem('myfav');
+      let movies = localStorage.getItem('favMovies');
       if (movies && movies.length) {
         movies = JSON.parse(movies);
       } else {
@@ -45,11 +45,11 @@ function App() {
         }
       )
       if (add) {
-        movies.push(movies);
+        movies.push(a);
       }
       setFavs(movies);
       let moviesStorage = JSON.stringify(movies);
-      localStorage.setItem('myfav', moviesStorage);
+      localStorage.setItem('favMovies', moviesStorage);
     }
   }
 

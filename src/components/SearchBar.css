@@ -1,10 +1,43 @@
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 input:not(.submit) {
     width: 80%;
     height: 50px;
     font-family: Arial;
     font-size: 24px;
-    border-radius: 10px;
+    border-radius: 5px;
     padding-left: 10px;
     margin: 30px 20px;
     border: 0;
+}
+
+.submit {
+    width: 7rem;
+    border-radius: 5px;
+    height: 50px;
+    border: 0;
+    cursor: pointer;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    background-color: var(--white);
+    transition: ease 100ms;
+}
+
+.submit:hover {
+    background-color: var(--red);
+    color: var(--white);
+}
+
+@media screen and (max-width: 500px) {
+    form {
+        flex-direction: column;
+    }
+    .submit{
+        width: 80%;
+    }
 }

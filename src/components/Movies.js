@@ -16,7 +16,7 @@ const Movies = (props) => {
         () => {
             let find = false;
             for (let movieFav of favContext.favs) {
-                if (movieFav.id != id) {
+                if (movieFav.id !== id) {
                     continue;
                 }
                 find = true;
