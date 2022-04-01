@@ -51,8 +51,8 @@ const Movies = (props) => {
                 {/* <h3>Release Date : {datas.release_date}</h3> */}
                 <p>{datas.overview}</p>
                 <div className='content'>
-                    <div className="clickableDiv">
-                        <span onClick={() => { favContext.register(datas) }} className={'favorite'+isFav}></span>
+                    <div className="clickableDiv" onClick={() => { favContext.register(datas) }}>
+                        <span className={'favorite'+isFav}></span>
                     </div>
                     <span className='voirFilm'>À voir</span>
                 </div>
