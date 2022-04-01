@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useSearchParams } from 'react-router-dom';
+import { useState } from "react";
 import './SearchBar.css';
 
 const SearchBar = (props) => {
@@ -13,8 +12,8 @@ const SearchBar = (props) => {
         } else {
             props.setSearch({query: movieTitle});
         }
-        console.log(e.target)
-        e.target.value = '';
+        movieTitle = '';
+        
     }
 
     return (

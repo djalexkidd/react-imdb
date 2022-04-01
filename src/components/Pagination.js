@@ -16,6 +16,7 @@ const prevNextPages = ({pageLink, pagenumber, pageMax = 0, withSearch = false, s
 
 const showPage = (pageMax, pagenumber, withSearch, search) => {
     let pageLink = [];
+    pageMax = pageMax > 500 ? 500 : pageMax;
 
     pageLink = prevNextPages({pageLink, pagenumber, withSearch, search}) // les trois pages d'avant
     pageLink.push(<span key={pageLink.length} className="actualPage">{pagenumber}</span>) // j'ajoute la page actuelle
@@ -46,6 +47,8 @@ const Pagination = (props) => {
     
     let {pageMax, pageNumber} = props;
     let [search] = useSearchParams();
+
+    pageNumber = pageNumber < 1 ? 1 : pageNumber;
     
     return (
         <div className="pagination">

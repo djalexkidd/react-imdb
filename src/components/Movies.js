@@ -26,7 +26,7 @@ const Movies = (props) => {
             if (!find) {
                 setFav('');
             }
-        }, [favContext]
+        }, [favContext, id]
     )
 
     return (
