@@ -55,7 +55,7 @@ const Accueil = () => {
                         (moviesData.length) ? 
                             moviesData.map(item => <Movies datas={item} key={item.id} />)
                         :
-                            <p>Aucun résulats n'a été trouvé pour votre recherche</p>
+                            <p>Aucun résultat n'a été trouvé pour votre recherche</p>
                     }
                 </div>
             <Pagination pageMax={pageMax} pageNumber={(query ? pageQuery : pageNumber)} withSearch={query}/>
