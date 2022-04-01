@@ -13,6 +13,8 @@ const SearchBar = (props) => {
         } else {
             props.setSearch({query: movieTitle});
         }
+        console.log(e.target)
+        e.target.value = '';
     }
 
     return (

@@ -1,5 +1,6 @@
 import { useEffect, useState, Fragment, useContext } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
+import '../components/Accueil.css';
 import Movies from "../components/Movies";
 import SearchBar from "../components/SearchBar";
 import Pagination from "../components/Pagination";
@@ -22,13 +23,14 @@ const Accueil = () => {
     
     useEffect(
         () => {
-            let discover = 'discover/movie'+(isNaN(pageNumber) ? '' : page)+pageNumber;
             setPageQuery(search.get('page'));
-            let title= search.get('query');
+            let title = search.get('query');
+            if (!title === null || !title === undefined) {setQuery(true);} else {setQuery(false);}
+            console.log(title)
             let apiSearch = '?query='+title;
-            if (!title) setQuery(false);
+            let discover = 'discover/movie'+(isNaN(pageNumber) ? '' : page)+pageNumber;
             let searchMovie = 'search/movie'+(title === null ? '' : apiSearch)+(pageQuery === 1 && query ? '&page='+pageQuery : '');
-            console.log(searchMovie)
+            console.log(query)
             fetch(apiCall+(!query ? discover : searchMovie), {
                 headers: {
                     'Authorization': 'Bearer '+apiKey
@@ -41,9 +43,10 @@ const Accueil = () => {
                 } else {
                     setMoviesData([])
                 }
+                console.log(query)
                 setPageMax(500);
             })
-        }, [pageNumber, search]
+        }, [pageNumber, search ,pageQuery]
     )
     pageNumber = +(pageNumber);
     return (
@@ -55,7 +58,7 @@ const Accueil = () => {
                         (moviesData.length) ? 
                             moviesData.map(item => <Movies datas={item} key={item.id} />)
                         :
-                            <p>Aucun résulats n'a été trouvé pour votre recherche</p>
+                            <p>Aucun résultat n'a été trouvé pour votre recherche</p>
                     }
                 </div>
             <Pagination pageMax={pageMax} pageNumber={(query ? pageQuery : pageNumber)} withSearch={query}/>
